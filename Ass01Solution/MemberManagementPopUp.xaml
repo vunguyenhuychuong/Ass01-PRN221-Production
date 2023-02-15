@@ -1,0 +1,30 @@
+﻿<Window x:Class="Ass01Solution.MemberManagementPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ass01Solution"
+        mc:Ignorable="d"
+        Title="MemberManagementPopUp" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label x:Name="lbAdd_Update">Add/Update</Label>
+            <Label>Member Id:</Label>
+            <TextBox x:Name="txtMemberId"></TextBox>
+            <Label>Email</Label>
+            <TextBox x:Name="txtEmail"></TextBox>
+            <Label>Company Name</Label>
+            <TextBox x:Name="txtCompanyName"></TextBox>
+            <Label>City</Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Label>Country</Label>
+            <TextBox x:Name="txtCountry"></TextBox>
+            <Label>Password</Label>
+            <TextBox x:Name="txtPassword"></TextBox>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnAdd_Update" Click="btnAdd_Update_Click">Add/Update</Button>
+                <Button x:Name="btnClose" Click="btnClose_Click">Close</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
