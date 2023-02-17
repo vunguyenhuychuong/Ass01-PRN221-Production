@@ -1,0 +1,62 @@
+﻿<Window x:Class="Ass01Solution.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ass01Solution"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Product">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFEEE3E3" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FFFFC591">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="366*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="lsvProduct"  Margin="0,50,0,97" Grid.ColumnSpan="2" MouseDoubleClick="lsvProduct_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Product ID" Width="120" DisplayMemberBinding="{Binding ProductId}"/>
+                                <GridViewColumn Header="Category ID" Width="120" DisplayMemberBinding="{Binding CategoryId}"/>
+                                <GridViewColumn Header="Product Name" Width="150" DisplayMemberBinding="{Binding ProductName}"/>
+                                <GridViewColumn Header="Weight" Width="140" DisplayMemberBinding="{Binding Weight}"/>
+                                <GridViewColumn Header="Unit Price" Width="130" DisplayMemberBinding="{Binding UnitPrice}"/>
+                                <GridViewColumn Header="UnitslnStock" Width="120" DisplayMemberBinding="{Binding UnitslnStock}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Left" Margin="43,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_addPro_Click" Background="White"/>
+                    <Button x:Name="btn_deletePro" Content="Delete" HorizontalAlignment="Left" Margin="275,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
+                    <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="502,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_Cancel_Click" Background="White"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Order">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="773*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

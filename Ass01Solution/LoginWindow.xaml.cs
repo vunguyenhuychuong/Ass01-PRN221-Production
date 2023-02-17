@@ -73,7 +73,31 @@ namespace Ass01Solution
                 mainWindow = new MainWindow(true);
                 mainWindow.UserRoleInfo = LoginByAdminAccount(email, password);
                 mainWindow.Show();
+
                 this.Hide();
+            }
+            /*else if (memberRepository.LoginByStaffAccount(email, password) != null)
+            {
+                var staff = staffRepository.GetStaffByEmail(txtUsername.Text);
+                MenuStaffManagement staffInformationView = new MenuStaffManagement(staff.StaffId);
+                staffInformationView.Show();
+                this.Hide();
+            }*/
+        }
+
+        private void btnLogin2_Click(object sender, RoutedEventArgs e)
+        {
+            memberRepository = new MemberRepository();
+            MenuWindow menuWindow;
+            String email = txtUsername.Text;
+            String password = txtPasword.Password;
+            if (LoginByAdminAccount(email, password) != null)
+            {
+                menuWindow = new MenuWindow(true);
+                menuWindow.UserRoleInfo = LoginByAdminAccount(email, password);
+                menuWindow.Show();
+
+                this.Close();
             }
             /*else if (memberRepository.LoginByStaffAccount(email, password) != null)
             {

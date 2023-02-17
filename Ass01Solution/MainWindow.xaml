@@ -12,7 +12,7 @@
                 <Label>Selected id:</Label>
                 <TextBox x:Name="txtSelectedId" Width="86" IsEnabled="False" Text="{Binding Path=MemberId, Mode=OneWay}" DataContext="{Binding ElementName=lsvMem, Path=SelectedItem}"></TextBox>
             </StackPanel>
-            <ListView x:Name="lsvMem" Height="310" SelectionChanged="lsvMems_SelectionChanged">
+            <ListView x:Name="lsvMem" Height="310">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="MemberID" Width="80" DisplayMemberBinding="{Binding MemberId}"/>

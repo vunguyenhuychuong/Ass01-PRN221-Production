@@ -30,7 +30,7 @@
                 <Button Name="btnLogin" Content="Login" FontSize="18" Margin="0,283,0,85" 
                     Background="#FB6090" Foreground="White"
                     HorizontalAlignment="Center" 
-                    Width="250" Click="btnLogin_Click"/>
+                    Width="250" Click="btnLogin2_Click"/>
                 <Label Content="Register" Foreground="#FB6090"
                    HorizontalAlignment="Left" Margin="25,326,0,0" VerticalAlignment="Top"/>
                 <Label Content="Forgot Password?" Foreground="#FB6090"

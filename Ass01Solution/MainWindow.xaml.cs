@@ -77,11 +77,8 @@ namespace Ass01Solution
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void lsvMems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            LoginWindow loginWindow = new LoginWindow();    
+            loginWindow.Show();
         }
     }
 }
