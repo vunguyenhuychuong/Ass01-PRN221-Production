@@ -22,115 +22,69 @@ namespace Ass01Solution
     /// </summary>
     public partial class MemberManagementPopUp : Window
     {
-        private int _memberId;
-        MainWindow _memberRepository;
-        IMemberRepository memberRepository = new MemberRepository();
-        private bool _isAddOrUpdate;
+        public IMemberRepository MemberRepository { get; set; }
 
-        public bool checkVaLidateCarname()
-        {
-            String Email = txtEmail.Text;
-            String Company = txtCompanyName.Text;
-            String City = txtCity.Text;
-            String Country = txtCountry.Text;
-            if (Email == null && Company == null && City == null && Country == null)
-            {
-                MessageBox.Show("FIELD KHONG DC DE TRONG");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        public bool InsertOrUpdate { get; set; }
+        public Member member { get; set; }
 
-        public MemberManagementPopUp(MainWindow memberRepository)
+
+        public MemberManagementPopUp()
         {
-            _isAddOrUpdate = true;
-            _memberRepository = memberRepository;
             InitializeComponent();
-            checkVaLidateCarname();
-            lbAdd_Update.Content = "Add";
-            btnAdd_Update.Content = "Add";
         }
 
-        public MemberManagementPopUp(int memberId, MainWindow memberRepository)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _isAddOrUpdate = false;
-            _memberRepository = memberRepository;
-            InitializeComponent();
-            checkVaLidateCarname();
-            SetUpdateForm(memberId);
+            txtMemberId.IsEnabled = !InsertOrUpdate;
+            if (InsertOrUpdate)
+            {
+                txtMemberId.Text = member.MemberId.ToString();
+                txtEmail.Text = member.Email;
+                txtCompanyName.Text = member.CompanyName;
+                txtCity.Text = member.City;
+                txtCountry.Text = member.Country;
+                txtPassword.Text = member.Password;
+            }
+
         }
 
-        private void SetUpdateForm(int memberId)
+        private void btn_Member_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                lbAdd_Update.Content = "Update";
-                btnAdd_Update.Content = "Update";
-                var mem = memberRepository.GetMemberById(memberId);
-                txtMemberId.Text = mem.MemberId.ToString();
-                txtEmail.Text = mem.Email;
-                txtCompanyName.Text = mem.CompanyName;
-                txtCity.Text = mem.City;
-                txtCountry.Text = mem.Country;
-                txtPassword.Text = mem.Password;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-
-            }
-        }
-
-
-        private void btnAdd_Update_Click(object sender, RoutedEventArgs e)
-        {
-            int memberId = int.Parse(txtMemberId.Text);
-            if (_isAddOrUpdate)
-            {
-                memberRepository.InsertMember(GetFormInfo());
-                _memberRepository.LoadMemberList();
-                MessageBox.Show("Success");
-                this.Close();
-            }
-            else
-            {
-                memberRepository.UpdateMember(GetFormInfo());
-                _memberRepository.LoadMemberList();
-                MessageBox.Show("Success");
-                this.Close();
-            }
-        }
-
-        private Member GetFormInfo()
-        {
-
-            Member member = null;
-            try
-            {
-                member = new Member
+                var member = new Member
                 {
-                    MemberId = int.Parse(txtMemberId.Text),
+                    MemberId = Int32.Parse(txtMemberId.Text),
                     Email = txtEmail.Text,
                     CompanyName = txtCompanyName.Text,
                     City = txtCity.Text,
                     Country = txtCountry.Text,
                     Password = txtPassword.Text,
                 };
+                if (InsertOrUpdate == false)
+                {
+                    MemberRepository.InsertMember(member);
+                    MessageBox.Show("Added Member Successfully!");
+                    this.Close();
+                }
+                else
+                {
+                    MemberRepository.UpdateMember(member);
+                    MessageBox.Show("Update Member Successfully!");
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "loi");
+                MessageBox.Show(ex.Message, InsertOrUpdate == false ? "add new" : "update");
             }
-            return member;
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
         }
     }
 }

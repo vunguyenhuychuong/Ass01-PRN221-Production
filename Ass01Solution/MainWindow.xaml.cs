@@ -23,54 +23,54 @@ namespace Ass01Solution
     public partial class MainWindow : Window
     {
         private IMemberRepository memberRepository = new MemberRepository();
+        private IOrderRepository orderRepository = new OrderRepository();
         public RoleUser UserRoleInfo { get; set; }
-        private bool _isAdmin;
-        public MainWindow(bool isAdmin)
+        private bool _isAddOrUpdate;
+        private int _memberId;
+
+        public MainWindow(int memberId)
         {
+            _isAddOrUpdate = false;
             InitializeComponent();
-            LoadMemberList();
-            _isAdmin = isAdmin;
+            _memberId = memberId;
+            CheckAddOrUpdate();
         }
 
 
-        public void LoadMemberList()
+        private Member GetMemberInfor()
         {
-            lsvMem.ItemsSource = memberRepository.GetMembers();
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            MemberManagementPopUp carManagementPopup = new MemberManagementPopUp(this);
-            carManagementPopup.Show();
-        }
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            if (!String.IsNullOrWhiteSpace(txtSelectedId.Text))
+            Member info = new Member
             {
-                MemberManagementPopUp carManagementPopUp = new MemberManagementPopUp(int.Parse(txtSelectedId.Text), this);
-                carManagementPopUp.Show();
+
+                MemberId = int.Parse(txtMemberId.Text),
+                Email = txtEmail.Text,
+                CompanyName = txtCompanyName.Text,
+                City = txtCity.Text,
+                Country = txtCountry.Text,
+                Password = txtPassword.Text
+            };
+            return info;
+        }
+
+        //Chi update thong tin nen cho false th add de ko bao gio nhay vao th add.
+        private void CheckAddOrUpdate()
+        {
+            txtMemberId.IsEnabled = _isAddOrUpdate;
+            if (_isAddOrUpdate)
+            {
+                lbAdd_Update.Content = "Add";
             }
             else
             {
-                MessageBox.Show("Please select a member");
-            }
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtSelectedId.Text))
-            {
-                MessageBox.Show("Please select a car you want to delete");
-            }
-            else
-            {
-                MessageBoxResult dialogResult = MessageBox.Show("This may cause delete carProducer ,Are you want to countinue?", "This action can'be reverse", MessageBoxButton.YesNo);
-                if (dialogResult == MessageBoxResult.Yes)
-                {
-                    memberRepository.DeleteMember(int.Parse(txtSelectedId.Text));
-                    LoadMemberList();
-                }
+                var info = memberRepository.GetMemberById(_memberId);
+                lbAdd_Update.Content = "Update";
+                txtMemberId.IsEnabled = false;
+                txtMemberId.Text = info.MemberId.ToString();
+                txtEmail.Text = info.Email;
+                txtCompanyName.Text = info.CompanyName;
+                txtCity.Text = info.City;
+                txtPassword.Text = info.Password;
+                txtCountry.Text = info.Country;
             }
         }
 
@@ -79,6 +79,39 @@ namespace Ass01Solution
             this.Close();
             LoginWindow loginWindow = new LoginWindow();    
             loginWindow.Show();
+        }
+
+        private void btn_Member_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (_isAddOrUpdate)
+                {
+                    memberRepository.InsertMember(GetMemberInfor());
+                    MessageBox.Show("Add success");
+                }
+                else
+                {
+                    memberRepository.UpdateMember(GetMemberInfor());
+                    MessageBox.Show("Update success");
+                }
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_View_History(object sender, RoutedEventArgs e)
+        {
+            ViewHistoryOrderWindow viewHistoryOrderWindow = new ViewHistoryOrderWindow(_memberId);
+            viewHistoryOrderWindow.Show();
         }
     }
 }

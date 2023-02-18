@@ -8,27 +8,23 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,12,0,12">
-                <Label>Selected id:</Label>
-                <TextBox x:Name="txtSelectedId" Width="86" IsEnabled="False" Text="{Binding Path=MemberId, Mode=OneWay}" DataContext="{Binding ElementName=lsvMem, Path=SelectedItem}"></TextBox>
-            </StackPanel>
-            <ListView x:Name="lsvMem" Height="310">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="MemberID" Width="80" DisplayMemberBinding="{Binding MemberId}"/>
-                        <GridViewColumn Header="Email" Width="100" DisplayMemberBinding="{Binding Email}"/>
-                        <GridViewColumn Header="CompanyName" Width="100" DisplayMemberBinding="{Binding CompanyName}"/>
-                        <GridViewColumn Header="City" Width="100" DisplayMemberBinding="{Binding City}"/>
-                        <GridViewColumn Header="Country" Width="100" DisplayMemberBinding="{Binding Country}"/>
-                        <GridViewColumn Header="Password" Width="100" DisplayMemberBinding="{Binding Password}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                <Button x:Name="btnAdd" Content="Add" Width="150" Margin="45,0,0,0" Height="30" Click="btnAdd_Click"/>
-                <Button x:Name="btnUpdate" Content="Update" Width="150" Margin="25,0,0,0" Click="btnUpdate_Click"/>
-                <Button x:Name="btnDelete" Content="Delete" Width="150" Margin="25,0,0,0" Click="btnDelete_Click"/>
-                <Button x:Name="btnCancel" Content="Cancel" Width="150" Margin="25,0,0,0" Click="btnCancel_Click"/>
+            <Label x:Name="lbAdd_Update">Add/Update</Label>
+            <Label>Member Id:</Label>
+            <TextBox x:Name="txtMemberId" Text="{Binding Path=MemberId, Mode=OneWay}"></TextBox>
+            <Label>Email</Label>
+            <TextBox x:Name="txtEmail"></TextBox>
+            <Label>Company Name</Label>
+            <TextBox x:Name="txtCompanyName"></TextBox>
+            <Label>City</Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Label>Country</Label>
+            <TextBox x:Name="txtCountry"></TextBox>
+            <Label>Password</Label>
+            <TextBox x:Name="txtPassword"></TextBox>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btn_Member" Click="btn_Member_Click" >Add/Update</Button>
+                <Button x:Name="btn_Close" Click="btn_Close_Click" >Close</Button>
+                <Button x:Name="btn_ViewHistory" Click="btn_View_History">View History Order</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

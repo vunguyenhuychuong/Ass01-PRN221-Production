@@ -22,8 +22,8 @@
             <Label>Password</Label>
             <TextBox x:Name="txtPassword"></TextBox>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="btnAdd_Update" Click="btnAdd_Update_Click">Add/Update</Button>
-                <Button x:Name="btnClose" Click="btnClose_Click">Close</Button>
+                <Button x:Name="btn_Member" Click="btn_Member_Click" >Add/Update</Button>
+                <Button x:Name="btn_Close" Click="btn_Close_Click" >Close</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

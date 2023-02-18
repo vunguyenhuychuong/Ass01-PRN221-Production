@@ -62,29 +62,6 @@ namespace Ass01Solution
             }
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            memberRepository = new MemberRepository();
-            MainWindow mainWindow;
-            String email = txtUsername.Text;
-            String password = txtPasword.Password;
-            if (LoginByAdminAccount(email, password) != null)
-            {
-                mainWindow = new MainWindow(true);
-                mainWindow.UserRoleInfo = LoginByAdminAccount(email, password);
-                mainWindow.Show();
-
-                this.Hide();
-            }
-            /*else if (memberRepository.LoginByStaffAccount(email, password) != null)
-            {
-                var staff = staffRepository.GetStaffByEmail(txtUsername.Text);
-                MenuStaffManagement staffInformationView = new MenuStaffManagement(staff.StaffId);
-                staffInformationView.Show();
-                this.Hide();
-            }*/
-        }
-
         private void btnLogin2_Click(object sender, RoutedEventArgs e)
         {
             memberRepository = new MemberRepository();
@@ -99,13 +76,17 @@ namespace Ass01Solution
 
                 this.Close();
             }
-            /*else if (memberRepository.LoginByStaffAccount(email, password) != null)
+            else if (memberRepository.GetMailAndPassword(email, password) != null)
             {
-                var staff = staffRepository.GetStaffByEmail(txtUsername.Text);
-                MenuStaffManagement staffInformationView = new MenuStaffManagement(staff.StaffId);
+                var member = memberRepository.GetMailAndPassword(email,password);
+                MainWindow staffInformationView = new MainWindow(member.MemberId);
                 staffInformationView.Show();
                 this.Hide();
-            }*/
+            }
+            else
+            {
+                MessageBox.Show("Login failed!", "Login", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -131,5 +131,51 @@ namespace DataAccess
                 throw new Exception(ex.Message);
             }
         }
+
+        public Order GetOrderByMemberId(int memberId)
+        {
+            FStoreDBAssignmentContext dBContext = new FStoreDBAssignmentContext();
+            Order? order = dBContext.Orders.Where(order => order.MemberId == memberId).FirstOrDefault();
+            return order;
+        }
+
+        public IEnumerable<Order> ViewOrderHistory(int memberId)
+        {
+            List<Order> listOrder;
+            try
+            {
+                var context = new FStoreDBAssignmentContext();
+                listOrder = context.Orders.Where(c => c.MemberId == memberId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return listOrder;
+        }
+
+        public List<Order> Filter(DateTime a, DateTime b)
+        {
+            var order = new List<Order>();
+            var fil = new List<Order>();
+            try
+            {
+                using var context = new FStoreDBAssignmentContext();
+                order = context.Orders.ToList();
+                for (int i = 0; i < order.Count(); i++)
+                {
+                    if ((order[i].RequiredDate >= a && order[i].ShippedDate <= a))
+                    {
+                        fil.Add(order[i]);
+                    }
+                }
+                fil = fil.OrderByDescending(x => x.RequiredDate).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return fil;
+        }
     }
 }

@@ -18,11 +18,12 @@
                 </TabItem.Background>
                 <Grid Background="#FFFFC591">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="31*"/>
-                        <ColumnDefinition Width="366*"/>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="713*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ListView x:Name="lsvProduct"  Margin="0,50,0,97" Grid.ColumnSpan="2" MouseDoubleClick="lsvProduct_MouseDoubleClick">
+                    <ListView x:Name="lsvProduct"  Margin="0,50,0,97" Grid.ColumnSpan="3" MouseDoubleClick="lsvProduct_MouseDoubleClick" SelectionChanged="lsvProduct_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Product ID" Width="120" DisplayMemberBinding="{Binding ProductId}"/>
@@ -34,26 +35,76 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Left" Margin="43,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_addPro_Click" Background="White"/>
-                    <Button x:Name="btn_deletePro" Content="Delete" HorizontalAlignment="Left" Margin="275,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
-                    <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="502,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_Cancel_Click" Background="White"/>
+                    <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Left" Margin="24,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_addPro_Click" Background="White"/>
+                    <Button x:Name="btn_deletePro" Content="Delete" HorizontalAlignment="Left" Margin="256,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
+                    <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="483,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="White"/>
 
                 </Grid>
             </TabItem>
 
             <TabItem Header="Order">
-                <Grid Background="#FFE5E5E5">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFEEE3E3" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FFFFC591">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="21*"/>
-                        <ColumnDefinition Width="773*"/>
+                        <ColumnDefinition Width="62*"/>
+                        <ColumnDefinition Width="71*"/>
+                        <ColumnDefinition Width="661*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2">
+                    <ListView x:Name="lsvOrder"  Margin="0,10,0,137" Grid.ColumnSpan="3" MouseDoubleClick="lsvOrder_MouseDoubleClick" SelectionChanged="lsvOrder_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn/>
+                                <GridViewColumn Header="Order ID" Width="120" DisplayMemberBinding="{Binding OrderId}"/>
+                                <GridViewColumn Header="Member ID" Width="120" DisplayMemberBinding="{Binding MemberId}"/>
+                                <GridViewColumn Header="Order Date" Width="150" DisplayMemberBinding="{Binding OrderDate}"/>
+                                <GridViewColumn Header="RequiredDate" Width="140" DisplayMemberBinding="{Binding RequiredDate}"/>
+                                <GridViewColumn Header="ShippedDate" Width="130" DisplayMemberBinding="{Binding ShippedDate}"/>
+                                <GridViewColumn Header="Freight" Width="120" DisplayMemberBinding="{Binding Freight}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button x:Name="btn_addOrder" Content="Add" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Click="btn_addPro_Click" Background="White" Grid.Column="1"/>
+                    <Button x:Name="btn_deleteOrder" Content="Delete" HorizontalAlignment="Left" Margin="144,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
+                    <Button x:Name="btn_CancelOrder" Content="Cancel" HorizontalAlignment="Left" Margin="367,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="White"/>
+                    <Label x:Name="lbDate" Content="RequiredDate" Grid.Column="2" Margin="52,274,509,31"/>
+                    <DatePicker x:Name="txtPickupDate" Text="{Binding PickupDate, Mode=OneWay}" Grid.Column="2" Margin="157,276,442,69"/>
+                    <Label x:Name="lbEndDate" Content="ShippedDate" Margin="269,274,270,20" Grid.Column="2"/>
+                    <DatePicker x:Name="txtReturnDate" Text="{Binding ReturnDate, Mode=OneWay}" Grid.Column="2" Margin="396,276,203,65"/>
+                    <Button x:Name="btnStatistic" Margin="521,274,60,90" Width="80" Content="Statistic" Click="btnStatistic_Click" RenderTransformOrigin="0.736,0.462" Grid.Column="2"/>
+                </Grid>
+            </TabItem >
+
+            <TabItem Header="Member">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FFEEE3E3" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FFFFC591">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="366*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="lsvMember"  Margin="0,50,0,97" Grid.ColumnSpan="2" MouseDoubleClick="lsvMember_MouseDoubleClick" SelectionChanged="lsvOrder_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Member ID" Width="120" DisplayMemberBinding="{Binding MemberId}"/>
+                                <GridViewColumn Header="Email" Width="120" DisplayMemberBinding="{Binding Email}"/>
+                                <GridViewColumn Header="Company Name" Width="150" DisplayMemberBinding="{Binding CompanyName}"/>
+                                <GridViewColumn Header="City" Width="140" DisplayMemberBinding="{Binding City}"/>
+                                <GridViewColumn Header="Country" Width="130" DisplayMemberBinding="{Binding Country}"/>
+                                <GridViewColumn Header="Password" Width="120" DisplayMemberBinding="{Binding Password}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="btn_Cancel_Copy1" Content="Cancel" HorizontalAlignment="Left" Margin="502,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_Cancel_Click" Background="White"/>
+                    <Button x:Name="btn_deleteMember_Copy1" Content="Delete" HorizontalAlignment="Left" Margin="275,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_deleteMem_Click" Background="#FFF7F7F7"/>
+                    <Button x:Name="btn_addMember_Copy1" Content="Add" HorizontalAlignment="Left" Margin="43,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="1" Click="btn_addMem_Click" Background="White"/>
                 </Grid>
             </TabItem>
         </TabControl>

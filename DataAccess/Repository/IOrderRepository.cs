@@ -14,5 +14,11 @@ namespace DataAccess.Repository
         void Update(Order order);
         void Delete(int orderId);
         Order GetById(int id);
+
+        Order GetOrderByMemberId(int memberId);
+
+        IEnumerable<Order> ViewOrderHistory(int memberId);
+
+        List<Order> GetOrderByDate(DateTime dateTime1, DateTime dateTime2);
     }
 }

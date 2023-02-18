@@ -23,8 +23,10 @@ namespace Ass01Solution
     {
 
         public IProductRepository ProductRepository { get; set; }
+       
         public bool InsertOrUpdate {get; set; }
         public Product product { get; set; }
+        
 
         public ProductManagermentPopUp()
         {
