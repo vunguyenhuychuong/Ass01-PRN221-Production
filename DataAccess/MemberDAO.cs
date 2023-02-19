@@ -78,21 +78,28 @@ namespace DataAccess
             {
                 throw new Exception(e.Message);
             }*/
-
-            var mem = (from u in dBContext.Members where u.MemberId == member.MemberId select u).SingleOrDefault();
-            if (mem != null)
+            try
             {
-                mem.MemberId = member.MemberId;
-                mem.Email = member.Email;
-                mem.CompanyName = member.CompanyName;
-                mem.City = member.City;
-                mem.Country = member.Country;
-                dBContext.SaveChanges();
+                var mem = (from u in dBContext.Members where u.MemberId == member.MemberId select u).SingleOrDefault();
+                if (mem != null)
+                {
+                    mem.MemberId = member.MemberId;
+                    mem.Email = member.Email;
+                    mem.CompanyName = member.CompanyName;
+                    mem.City = member.City;
+                    mem.Country = member.Country;
+                    dBContext.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Staff does not exitst");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                throw new Exception("Staff does not exitst");
+                throw new Exception(ex.Message);
             }
+            
         }
 
 

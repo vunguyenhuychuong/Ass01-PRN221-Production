@@ -38,6 +38,8 @@
                     <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Left" Margin="24,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_addPro_Click" Background="White"/>
                     <Button x:Name="btn_deletePro" Content="Delete" HorizontalAlignment="Left" Margin="256,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
                     <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="483,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="White"/>
+                    <TextBox x:Name="txt_search" HorizontalAlignment="Left" Margin="0,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="23" Grid.ColumnSpan="3" UndoLimit="99" FontFamily="Bahnschrift" VerticalContentAlignment="Center"/>
+                    <Button x:Name="btn_search" Grid.Column="2" Content="SEARCH" HorizontalAlignment="Left" Margin="50,22,0,0" VerticalAlignment="Top" Height="23" Width="53" BorderBrush="#FF4B4B4B" Background="#FFF1F1F1" Click="btn_search_Click"/>
 
                 </Grid>
             </TabItem>
@@ -67,14 +69,14 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="btn_addOrder" Content="Add" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Click="btn_addPro_Click" Background="White" Grid.Column="1"/>
-                    <Button x:Name="btn_deleteOrder" Content="Delete" HorizontalAlignment="Left" Margin="144,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
-                    <Button x:Name="btn_CancelOrder" Content="Cancel" HorizontalAlignment="Left" Margin="367,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="White"/>
-                    <Label x:Name="lbDate" Content="RequiredDate" Grid.Column="2" Margin="52,274,509,31"/>
-                    <DatePicker x:Name="txtPickupDate" Text="{Binding PickupDate, Mode=OneWay}" Grid.Column="2" Margin="157,276,442,69"/>
-                    <Label x:Name="lbEndDate" Content="ShippedDate" Margin="269,274,270,20" Grid.Column="2"/>
-                    <DatePicker x:Name="txtReturnDate" Text="{Binding ReturnDate, Mode=OneWay}" Grid.Column="2" Margin="396,276,203,65"/>
-                    <Button x:Name="btnStatistic" Margin="521,274,60,90" Width="80" Content="Statistic" Click="btnStatistic_Click" RenderTransformOrigin="0.736,0.462" Grid.Column="2"/>
+                    <Button x:Name="btn_addOrder" Content="Add" HorizontalAlignment="Left" Margin="48,335,0,0" VerticalAlignment="Top" Height="37" Width="122" Background="White" Grid.Column="1" Grid.ColumnSpan="2" Click="btn_addOrder_Click"/>
+                    <Button x:Name="btn_deleteOrder" Content="Delete" HorizontalAlignment="Left" Margin="204,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Background="#FFF7F7F7" Click="btn_deleteOrder_Click"/>
+                    <Button x:Name="btn_CancelOrder" Content="Cancel" HorizontalAlignment="Left" Margin="419,335,0,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="White"/>
+                    <Label x:Name="lbDate" Content="RequiredDate" Margin="0,274,632,31" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <DatePicker x:Name="txtPickupDate" Text="{Binding PickupDate, Mode=OneWay}" Grid.Column="2" Margin="10,274,544,78"/>
+                    <Label x:Name="lbEndDate" Content="ShippedDate" Margin="144,274,414,90" Grid.Column="2"/>
+                    <DatePicker x:Name="txtReturnDate" Text="{Binding ReturnDate, Mode=OneWay}" Grid.Column="2" Margin="225,274,330,78"/>
+                    <Button x:Name="btnStatistic" Margin="439,274,142,90" Width="80" Content="Statistic" Click="btnStatistic_Click" RenderTransformOrigin="0.736,0.462" Grid.Column="2"/>
                 </Grid>
             </TabItem >
 

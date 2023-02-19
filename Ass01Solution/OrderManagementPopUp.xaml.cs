@@ -52,12 +52,12 @@ namespace Ass01Solution
             {
                 var order = new Order
                 {
-                    OrderId = Int32.Parse(txtOrderId.Text),
-                    MemberId = Int32.Parse(txtMemberId.Text),
+                    OrderId = int.Parse(txtOrderId.Text),
+                    MemberId = int.Parse(txtMemberId.Text),
                     OrderDate = DateTime.Parse(txtOrderDate.Text),
                     RequiredDate = DateTime.Parse(txtRequiredDate.Text),
                     ShippedDate = DateTime.Parse(txtShippedDate.Text),
-                    Freight = Int32.Parse(txtFreight.Text),
+                    Freight = Decimal.Parse(txtFreight.Text),
                 };
                 if (InsertOrUpdate == false)
                 {

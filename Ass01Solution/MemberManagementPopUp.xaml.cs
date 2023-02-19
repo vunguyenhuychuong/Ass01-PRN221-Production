@@ -54,7 +54,7 @@ namespace Ass01Solution
             {
                 var member = new Member
                 {
-                    MemberId = Int32.Parse(txtMemberId.Text),
+                    MemberId = int.Parse(txtMemberId.Text),
                     Email = txtEmail.Text,
                     CompanyName = txtCompanyName.Text,
                     City = txtCity.Text,

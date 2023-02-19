@@ -139,7 +139,7 @@ namespace Ass01Solution
             Order order = null;
             try
             {
-                dynamic selectItem = lsvProduct.SelectedItem;
+                dynamic selectItem = lsvOrder.SelectedItem;
                 order = new Order
                 {
                     OrderId = selectItem.OrderId,
@@ -155,6 +155,29 @@ namespace Ass01Solution
                 MessageBox.Show("double click order to update");
             }
             return order;
+        }
+
+        private Member GetMemberObject()
+        {
+            Member member = null;
+            try
+            {
+                dynamic selectItem = lsvMember.SelectedItem;
+                member = new Member
+                {
+                    MemberId = selectItem.MemberId,
+                    Email = selectItem.Email,
+                    CompanyName = selectItem.CompanyName,
+                    City = selectItem.City,
+                    Country = selectItem.Country,
+                    Password = selectItem.Password,
+                };
+            }
+            catch (RuntimeBinderException ex)
+            {
+                MessageBox.Show("double click order to update");
+            }
+            return member;
         }
 
         private void lsvOrder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -234,6 +257,87 @@ namespace Ass01Solution
         {
             lsvOrder.ItemsSource = (System.Collections.IEnumerable)orderRepository.GetOrderByDate(txtPickupDate.DisplayDate, txtReturnDate.DisplayDate);
             MessageBox.Show($"The total amount of sales in the selected period is  currency", "Statistic Order ");
+        }
+
+        private void btn_search_Click(object sender, RoutedEventArgs e)
+        {
+            var products = productRepository.GetProducts();
+            List<Product> list = new List<Product>();
+            foreach (var product in products)
+            {
+                if (product.ProductName.ToUpper().Contains(txt_search.Text.ToUpper()))
+                {
+                    list.Add(product);
+                }
+                else if (int.TryParse(txt_search.Text, out int value))
+                {
+                    if (value == product.ProductId)
+                    {
+                        list.Add(product);
+                    }
+                }
+            }
+            if (list.Count > 0)
+            {
+                lsvProduct.ItemsSource = list;
+            }
+            else
+            {
+                MessageBox.Show("Product has not found");
+                LoadProductList();
+            }
+        }
+
+        private void btn_addOrder_Click(object sender, RoutedEventArgs e)
+        {
+            OrderManagementPopUp orderManagermentPopUp = new OrderManagementPopUp
+            {
+                Title = "Add order Popup",
+                InsertOrUpdate = false,
+                OrderRepository = orderRepository,
+            };
+            if (orderManagermentPopUp.ShowDialog() == false)
+            {
+                LoadOrderList();
+            }
+        }
+
+        private void btn_deleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                dynamic selectItem = lsvOrder.SelectedItem;
+                var orderId = selectItem.OrderId;
+
+                orderRepository.Delete(orderId);
+                MessageBox.Show("Deleted Successfully!");
+                LoadOrderList();
+
+            }
+            catch (RuntimeBinderException ex)
+            {
+                MessageBox.Show("Select order to Delete");
+            }
+        }
+
+        private void lsvMember_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Member member = GetMemberObject();
+            if (member != null)
+            {
+                MemberManagementPopUp memberManagementPopUp = new MemberManagementPopUp
+                {
+                    Title = "Update Member",
+                    InsertOrUpdate = true,
+                    MemberRepository = memberRepository,
+                    member = member
+                };
+                if (memberManagementPopUp.ShowDialog() == false)
+                {
+                    LoadMemberList();
+                }
+            }
+            
         }
     }
  }

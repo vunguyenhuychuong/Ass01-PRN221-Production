@@ -9,9 +9,6 @@ namespace DataAccess
 {
     public class OrderDAO
     {
-        FStoreDBAssignmentContext dBContext = new FStoreDBAssignmentContext();
-        List<Order> orders = new List<Order>();
-
         private static OrderDAO instance = null;
         private static readonly object instanceLock = new object();
 
@@ -37,6 +34,7 @@ namespace DataAccess
             Order order = null;
             try
             {
+                using var dBContext = new FStoreDBAssignmentContext();
                 order = dBContext.Orders.SingleOrDefault(p => p.OrderId == orderId);
             }
             catch (Exception ex)
@@ -51,6 +49,7 @@ namespace DataAccess
             var orders = new List<Order>();
             try
             {
+                using var dBContext = new FStoreDBAssignmentContext();
                 orders = dBContext.Orders.ToList();
             }
             catch (Exception ex)
@@ -67,6 +66,7 @@ namespace DataAccess
                 Order order = GetOrderById(newOrder.OrderId);
                 if (order == null)
                 {
+                    using var dBContext = new FStoreDBAssignmentContext();
                     dBContext.Orders.Add(newOrder);
                     dBContext.SaveChanges();
                 }
@@ -88,6 +88,7 @@ namespace DataAccess
                 Order order = GetOrderById(orderId);
                 if (order != null)
                 {
+                    using var dBContext = new FStoreDBAssignmentContext();
                     dBContext.Orders.Remove(order);
                     dBContext.SaveChanges();
                 }
@@ -117,6 +118,7 @@ namespace DataAccess
                     }
                     if (check)
                     {
+                        using var dBContext = new FStoreDBAssignmentContext();
                         dBContext.Orders.Update(order);
                         dBContext.SaveChanges();
                     }

@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ass01Solution"
         mc:Ignorable="d"
-        Title="MemberManagementPopUp" Height="450" Width="800">
+        Title="MemberManagementPopUp" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="263*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
             <Label x:Name="lbAdd_Update">Add/Update</Label>
             <Label>Member Id:</Label>
             <TextBox x:Name="txtMemberId"></TextBox>
