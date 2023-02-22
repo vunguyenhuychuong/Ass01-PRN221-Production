@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="OrderManagementPopUp" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <StackPanel>
-            <Label x:Name="lb_Order">Add/Update</Label>
+        <StackPanel Background="LightBlue" Orientation="Vertical" HorizontalAlignment="Center" Width="616" Margin="0,0,0,116">
             <Label>Order Id:</Label>
             <TextBox x:Name="txtOrderId"></TextBox>
             <Label>Member Id</Label>
@@ -21,10 +20,9 @@
             <TextBox x:Name="txtShippedDate"></TextBox>
             <Label>Freight</Label>
             <TextBox x:Name="txtFreight"></TextBox>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="btn_Order" Click="btn_Order_Click" >Add/Update</Button>
-                <Button x:Name="btn_Close" Click="btn_Close_Click" >Close</Button>
-            </StackPanel>
+
         </StackPanel>
+        <Button Content="Add Or Update" HorizontalAlignment="Left" Background="LightPink" x:Name="btn_Order" Click="btn_Order_Click" Margin="175,347,0,0" VerticalAlignment="Top" Height="45"/>
+        <Button Content="Close" HorizontalAlignment="Left" Background="LightPink"  x:Name="btn_Close" Click="btn_Close_Click" Margin="484,347,0,0" VerticalAlignment="Top" Height="45" Width="83"/>
     </Grid>
 </Window>

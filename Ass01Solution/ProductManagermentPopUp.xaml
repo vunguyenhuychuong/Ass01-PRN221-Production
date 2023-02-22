@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="ProductManagermentPopUp" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <StackPanel>
-            <Label x:Name="lb_Product">Add/Update</Label>
+        <StackPanel Background="LightBlue" Orientation="Vertical" HorizontalAlignment="Center" Width="560" Margin="0,0,0,134">
             <Label>Product Id:</Label>
             <TextBox x:Name="txtProductId"></TextBox>
             <Label>Category Id</Label>
@@ -22,9 +21,10 @@
             <Label>UnitslnStock</Label>
             <TextBox x:Name="txtUnitslnStock"></TextBox>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="btn_Product" Click="btn_Product_Click" >Add/Update</Button>
-                <Button x:Name="btn_Close" Click="btn_Close_Click" >Close</Button>
+
             </StackPanel>
         </StackPanel>
+        <Button x:Name="btn_Product" Click="btn_Product_Click" Content="Add Or Update" Background="LightPink" HorizontalAlignment="Left" Margin="187,340,0,0" VerticalAlignment="Top" Height="53" Width="125"/>
+        <Button x:Name="btn_Close" Click="btn_Close_Click" Content="Close" HorizontalAlignment="Left" Background="LightPink" Margin="455,340,0,0" VerticalAlignment="Top" Width="110" Height="53"/>
     </Grid>
 </Window>
