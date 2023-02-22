@@ -108,29 +108,9 @@ namespace Ass01Solution
                 };
             }catch(RuntimeBinderException ex)
             {
-                MessageBox.Show("double click product to update");
+                MessageBox.Show("Select product to update");
             }
             return product;
-        }
-
-        private void lsvProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Product product = GetProductObject();
-            if (product != null)
-            {
-                ProductManagermentPopUp productManagermentPopUp = new ProductManagermentPopUp
-                {
-                    Title = "UpdateProduct PopUp",
-                    InsertOrUpdate = true,
-                    ProductRepository = productRepository,
-                    product = product
-                };
-
-                if (productManagermentPopUp.ShowDialog() == false)
-                {
-                    LoadProductList();
-                }
-            }         
         }
 
         /* Order */
@@ -152,7 +132,7 @@ namespace Ass01Solution
             }
             catch (RuntimeBinderException ex)
             {
-                MessageBox.Show("double click order to update");
+                MessageBox.Show("Select order to update");
             }
             return order;
         }
@@ -175,29 +155,9 @@ namespace Ass01Solution
             }
             catch (RuntimeBinderException ex)
             {
-                MessageBox.Show("double click order to update");
+                MessageBox.Show("Select order to update");
             }
             return member;
-        }
-
-        private void lsvOrder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Order order = GetOrderObject();
-            if (order != null)
-            {
-                OrderManagementPopUp orderManagermentPopUp = new OrderManagementPopUp
-                {
-                    Title = "UpdateProduct PopUp",
-                    InsertOrUpdate = true,
-                    OrderRepository = orderRepository,
-                    order = order
-                };
-
-                if (orderManagermentPopUp.ShowDialog() == false)
-                {
-                    LoadOrderList();
-                }
-            }
         }
 
        
@@ -233,26 +193,6 @@ namespace Ass01Solution
                 MessageBox.Show("Select Product to Delete");
             }
         }
-
-
-
-
-
-        private void lsvProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void lsvOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void lsvMember_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void btnStatistic_Click(object sender, RoutedEventArgs e)
         {
             lsvOrder.ItemsSource = (System.Collections.IEnumerable)orderRepository.GetOrderByDate(txtPickupDate.DisplayDate, txtReturnDate.DisplayDate);
@@ -320,7 +260,7 @@ namespace Ass01Solution
             }
         }
 
-        private void lsvMember_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             Member member = GetMemberObject();
             if (member != null)
@@ -337,7 +277,50 @@ namespace Ass01Solution
                     LoadMemberList();
                 }
             }
-            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Product product = GetProductObject();
+            if (product != null)
+            {
+                ProductManagermentPopUp productManagermentPopUp = new ProductManagermentPopUp
+                {
+                    Title = "UpdateProduct PopUp",
+                    InsertOrUpdate = true,
+                    ProductRepository = productRepository,
+                    product = product
+                };
+
+                if (productManagermentPopUp.ShowDialog() == false)
+                {
+                    LoadProductList();
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Order order = GetOrderObject();
+            if (order != null)
+            {
+                OrderManagementPopUp orderManagementPopUp = new OrderManagementPopUp
+                {
+                    Title = "Update Order",
+                    InsertOrUpdate = true,
+                    OrderRepository = orderRepository,
+                    order = order
+                };
+                if (orderManagementPopUp.ShowDialog() == false)
+                {
+                    LoadOrderList();
+                }
+            }
+        }
+
+        private void lsvOrder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
  }
