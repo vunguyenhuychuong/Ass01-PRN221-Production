@@ -66,7 +66,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Right" Margin="0,50,10,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_addPro_Click" Background="White"/>
+                    <Button x:Name="btn_addPro" Content="Add" HorizontalAlignment="Right" Margin="0,50,10,0" VerticalAlignment="Top" Height="33" Width="120" Grid.Column="2" Click="btn_addPro_Click" Background="White"/>
                     <Button x:Name="btn_deletePro" Content="Delete" HorizontalAlignment="Right" Margin="0,180,10,0" VerticalAlignment="Top" Height="37" Width="120" Grid.Column="2" Click="btn_deletePro_Click" Background="#FFF7F7F7"/>
                     <Button x:Name="btn_Cancel" Content="Cancel" HorizontalAlignment="Right" Margin="0,337,10,0" Width="120" Grid.Column="2" Click="btn_Cancel_Click" Background="#FFFAC5C5" Height="37" VerticalAlignment="Top"/>
                     <TextBox x:Name="txt_search" HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="23" Grid.ColumnSpan="3" UndoLimit="99" FontFamily="Bahnschrift" VerticalContentAlignment="Center"/>

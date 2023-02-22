@@ -215,6 +215,15 @@ namespace Ass01Solution
                     {
                         list.Add(product);
                     }
+                    else if (value == product.UnitslnStock)
+                    {
+                        list.Add(product);
+                    }
+                }else if (decimal.TryParse(txt_search.Text, out decimal value2))
+                {
+                    if (value2 == product.UnitPrice) {
+                        list.Add(product);
+                    }
                 }
             }
             if (list.Count > 0)
